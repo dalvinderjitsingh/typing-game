@@ -29,7 +29,7 @@ const quotes = [
     "Sam Wilson"
   ],
   [
-    "At some point we all have to choose between what the world wants you to be and who you are.",
+    "At some point, we all have to choose between what the world wants you to be and who you are.",
     "Natasha Romanoff"
   ],
   [
@@ -81,7 +81,7 @@ const quotes = [
     "Captain America"
   ],
   [
-    "You cannot talk! One more word, and I will feed you to my children. I'm kidding. We are vegetarians.",
+    "You cannot talk! One more word and I will feed you to my children. I'm kidding. We are vegetarians.",
     "M'Baku"
   ],
   [
@@ -173,11 +173,13 @@ setStats();
 // DATE AND TIME
 // Current Date
 const date = new Date();
-dateElement.innerHTML = `${date.getDate()}.${date.getMonth()}.${date.getFullYear()}`;
+dateElement.innerHTML = `${date.getDate()}.${
+  date.getMonth() + 1
+}.${date.getFullYear()}`;
 // Set datetime attribute for date
 dateElement.setAttribute(
   "datetime",
-  `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`
+  `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
 );
 // Current Time
 function currentTime() {
@@ -354,7 +356,7 @@ typedValueElement.addEventListener("input", (e) => {
     // Clear timer
     clearInterval(timer);
     // Reset h1 content
-    topHeadingElement.innerHTML = `Speed Typing Game`;
+    topHeadingElement.innerHTML = `Typing Game`;
 
     // WPM CALCULATIONS
     const elapsedTime = new Date().getTime() - startTime;
