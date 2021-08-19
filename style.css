@@ -1,0 +1,481 @@
+/* GLOBAL
+--------- */
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  /* border: 1px solid red; */
+}
+
+:root {
+  --amber: #ffbf00;
+  --orange: orange;
+  --crimson: #a51c30;
+  --grey: #93a1ad;
+}
+
+html {
+  font-size: 10px;
+  scroll-behavior: smooth;
+}
+
+/* FONT
+------- */
+body,
+input,
+.start-btn,
+.date-time-wrapper,
+.delete-btn,
+.cancel-btn,
+.confirm-delete-btn,
+.close {
+  font-family: "Roboto", sans-serif;
+}
+
+.date-time-wrapper,
+.statsStyle,
+.stats-btn,
+.settings-btn {
+  font-family: "Roboto Mono", monospace;
+}
+
+main h1,
+.congrats-message {
+  font-family: "Press Start 2P", sans-serif;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  background-color: black;
+  color: var(--amber);
+  text-transform: uppercase;
+  overflow: auto;
+  display: grid;
+  place-items: center;
+}
+
+/* MAIN
+------- */
+.outer-wrapper {
+  max-width: 1024px;
+  width: 100%;
+  min-width: 375px;
+  padding: 2.4rem;
+}
+
+.inner-wrapper {
+  position: relative;
+  padding: 2.4rem 2.4rem 2.4rem 9.6rem;
+
+  background-size: 24px 24px, 24px 24px;
+  background-image: linear-gradient(
+      to right,
+      rgba(255, 191, 0, 0.5) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, rgba(255, 191, 0, 0.5) 1px, transparent 1px);
+  background-repeat: repeat, repeat;
+
+  border: 3px solid var(--amber);
+  box-shadow: 0 0 5px var(--orange);
+}
+
+main {
+  min-height: 341px;
+  background-color: black;
+  text-align: center;
+  border: 3px solid var(--amber);
+  box-shadow: 0 0 4px var(--orange);
+}
+
+main h1 {
+  font-size: 2.4rem;
+  background-color: var(--amber);
+  color: black;
+  padding: 24px 12px;
+}
+
+.content {
+  font-size: 1.8rem;
+  padding: 2.4rem 2.4rem;
+}
+
+.instruction {
+  font-size: 2rem;
+  margin-top: 2.4rem;
+  margin-bottom: 4.8rem;
+}
+
+.quote {
+  font-size: 2.4rem;
+  text-transform: none;
+}
+
+.author {
+  text-align: right;
+  font-size: 1.2rem;
+  font-style: italic;
+  opacity: 0.9;
+  margin-top: 1.2rem;
+}
+
+.congrats-message {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+input {
+  font-size: 2.4rem;
+  color: var(--amber);
+  background-color: black;
+  border: 1px solid var(--amber);
+  padding: 0.6rem 0rem;
+  margin: 1.2rem 0 2.4rem 0;
+  text-align: center;
+  width: 168px;
+}
+
+input:focus {
+  outline: 1px solid var(--amber);
+  box-shadow: 0 0 5px var(--orange);
+}
+
+button {
+  cursor: pointer;
+}
+
+.start-btn {
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  background-color: var(--amber);
+  color: black;
+  padding: 0.95rem 1.75rem;
+  box-shadow: 0 0 5px var(--orange);
+}
+
+.start-btn:hover,
+.start-btn:focus,
+.close:hover,
+.close:focus,
+.delete-btn:hover,
+.delete-btn:focus {
+  background-color: rgba(255, 191, 0, 0.8);
+}
+
+.stats-btn:hover,
+.stats-btn:focus,
+.settings-btn:hover,
+.settings-btn:focus {
+  color: rgba(255, 191, 0, 0.8);
+}
+
+.start-btn:active,
+.close:active,
+.delete-btn:active {
+  background-color: rgba(255, 191, 0, 0.6);
+}
+
+.stats-btn:active,
+.settings-btn:active {
+  color: rgba(255, 191, 0, 0.6);
+}
+
+.highlight {
+  background-color: var(--amber);
+  color: black;
+}
+
+.error {
+  color: red;
+  /* background-color: lightcoral; */
+  border: 1px solid red;
+}
+
+.error:focus {
+  outline: 1px solid red;
+  box-shadow: 0 0 5px red;
+}
+
+.statsStyle {
+  color: black;
+  background-color: var(--amber);
+  padding: 0 2px;
+}
+
+/* STATISTICS & SETTINGS BUTON/ICON
+------------------------------------- */
+.stats-btn,
+.settings-btn {
+  position: absolute;
+  left: 1px;
+  width: 95px;
+  color: var(--amber);
+  font-size: 1.4rem;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  text-shadow: 0 0 5px var(--orange);
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.stats-btn {
+  bottom: 127px;
+}
+
+.settings-btn {
+  bottom: 48px;
+}
+
+.material-icons.md-36 {
+  font-size: 36px;
+}
+
+/* MODAL BOX
+------------ */
+.modal {
+  display: none; /* Hidden by default */
+  position: absolute; /* Prior = position: fixed;*/
+  z-index: 10; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height Enable scroll if needed*/
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* 2nd Modal, appears on top of Settings Modal */
+.delete-modal {
+  position: fixed;
+  top: 10%;
+  overflow: auto;
+}
+
+/* MODAL CONTENT
+---------------- */
+.modal-content {
+  background-color: black;
+  margin: 0 auto; /* Directy from the top and centered */
+  padding: 2.4rem;
+  border: 3px solid var(--amber);
+  box-shadow: 0 0 5px var(--orange);
+  width: 87%; /* Could be more or less, depending on screen size */
+  max-width: 400px;
+  font-size: 1.8rem;
+  line-height: 1.5;
+  position: relative;
+}
+
+/* Modal Close Button */
+.close {
+  float: right;
+  font-size: 2.4rem;
+  font-weight: bold;
+  padding: 0 0.6rem;
+  color: black;
+  background-color: var(--amber);
+  box-shadow: 0 0 5px var(--orange);
+}
+
+/* STATISTICS MODAL
+------------------- */
+.stats-modal h2,
+.settings-modal h2,
+.settings-modal h3 {
+  font-size: 2rem;
+  margin-bottom: 2.4rem;
+  text-align: center;
+  margin-right: 24px;
+  margin-left: 24px;
+  padding-right: 0.5rem;
+}
+
+.stats-modal h3 {
+  font-size: 1.8rem;
+  text-decoration: underline;
+  margin: 2.4rem 0 1.2rem;
+}
+
+.stats-modal p {
+  margin-bottom: 1.2rem;
+}
+
+.text-border {
+  display: inline-block;
+  border: 1px solid var(--amber);
+  padding: 1rem;
+}
+
+/* SETTINGS MODAL
+----------------- */
+.delete-btn {
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  background-color: var(--amber);
+  color: black;
+  padding: 1.2rem;
+  box-shadow: 0 0 5px var(--orange);
+}
+
+.settings-modal p {
+  margin-bottom: 2.4rem;
+  text-align: center;
+}
+
+.delete-and-cancel-btn-wrapper {
+  display: flex;
+}
+
+.cancel-btn,
+.confirm-delete-btn {
+  color: black;
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 0.9rem 0;
+  width: 50%;
+}
+
+.cancel-btn {
+  background-color: var(--grey);
+  box-shadow: 0 0 5px rgba(147, 161, 173, 0.9);
+}
+
+.cancel-btn:hover,
+.cancel-btn:focus {
+  background-color: rgba(147, 161, 173, 0.8);
+}
+
+.confirm-delete-btn {
+  background-color: var(--crimson);
+  box-shadow: 0 0 5px rgba(165, 28, 48, 0.9);
+}
+
+.confirm-delete-btn:hover,
+.confirm-delete-btn:focus {
+  background-color: rgba(165, 28, 48, 0.8);
+}
+
+/* DATE & TIME
+-------------- */
+.date-time-wrapper {
+  position: absolute;
+  bottom: 0px;
+  left: 6px;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 2rem;
+  font-weight: bold;
+  text-shadow: 0 0 5px var(--orange);
+}
+
+.date {
+  margin-right: 2.4rem;
+}
+
+/* MEDIA QUERY
+-------------- */
+@media only screen and (max-width: 768px) {
+  .outer-wrapper {
+    padding: 12px;
+  }
+
+  .inner-wrapper {
+    padding: 2.4rem 2.4rem 2.4rem 7.2rem;
+  }
+
+  main {
+    min-height: auto;
+  }
+
+  main h1 {
+    padding: 1.2rem;
+    font-size: 2rem;
+  }
+
+  .instruction {
+    font-size: 1.8rem;
+    margin-top: 0;
+    margin-bottom: 2.4rem;
+  }
+
+  .stats-btn,
+  .settings-btn {
+    width: 71px;
+    font-size: 1rem;
+  }
+
+  .stats-btn {
+    bottom: 121px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .inner-wrapper {
+    padding: 2.4rem;
+  }
+
+  .quote {
+    font-size: 2rem;
+  }
+
+  input {
+    font-size: 2rem;
+  }
+
+  .start-btn {
+    padding: 0.7rem 1.75rem;
+  }
+
+  .congrats-message {
+    font-size: 1.8rem;
+  }
+
+  .stats-btn,
+  .settings-btn {
+    width: auto;
+    height: auto;
+    left: 0;
+  }
+
+  .stats-btn {
+    bottom: 96px;
+  }
+
+  .material-icons.md-36 {
+    font-size: 24px;
+  }
+
+  /* Make icon-heading visually hidden yet accessible */
+  .icon-heading:not(:focus):not(:active) {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .congrats-message {
+    font-size: 1.5rem;
+  }
+}

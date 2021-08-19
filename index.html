@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Typing Game</title>
+    <meta
+      name="description"
+      content="A typing game with quotes from Marvel movies and series."
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto&family=Roboto+Mono&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
+      rel="stylesheet"
+    />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⌨️</text></svg>"
+    />
+    <script src="script.js" defer></script>
+  </head>
+
+  <body onload="currentTime()">
+    <div class="outer-wrapper">
+      <div class="inner-wrapper">
+        <!-- MAIN CONTENT START -->
+        <main>
+          <h1 id="topHeading">Typing Game</h1>
+
+          <div class="content">
+            <p id="congratsMessage" class="congrats-message"></p>
+            <!-- This will display congratulations messages -->
+            <p id="speedMessage" class="speed-message"></p>
+            <!-- This will display speed in wpm -->
+            <p id="timeMessage" class="time-message"></p>
+            <!-- This will display elapsed time in seconds -->
+            <p id="instruction" class="instruction">
+              Practice your typing skills with quotes from Marvel movies and
+              series.<br /><br />
+              Click **Start** to begin!
+            </p>
+            <p id="quote" class="quote"></p>
+            <!-- This will display the quote -->
+            <p id="author" class="author"></p>
+            <!-- This will display the name of the author of the quote -->
+
+            <div class="container">
+              <input
+                type="text"
+                aria-label="current word"
+                id="typed-value"
+                class="input"
+                placeholder="Type"
+              />
+              <!-- The textbox for typing -->
+              <button type="button" id="start" class="start-btn">Start</button>
+              <!-- To start the game -->
+            </div>
+          </div>
+        </main>
+        <!-- MAIN CONTENT END -->
+
+        <!-- STATISTICS MODAL BOX START -->
+        <!-- Button to open the modal -->
+        <button type="button" id="statsBtn" class="stats-btn">
+          <span
+            class="material-icons-outlined material-icons md-36"
+            aria-hidden="true"
+            >assessment</span
+          >
+          <span class="icon-heading">Statistics</span>
+        </button>
+
+        <!-- The Modal Box-->
+        <div id="statsModal" class="modal stats-modal">
+          <!-- Modal content -->
+          <div class="modal-content">
+            <button type="button" class="close">&times;</button>
+            <h2><span class="text-border">Game Statistics</span></h2>
+            <p id="topSpeed"></p>
+            <p id="noOfGames"></p>
+            <h3>Most Recent Game</h3>
+            <p id="recentSpeed"></p>
+            <p id="recentTime"></p>
+          </div>
+        </div>
+        <!-- STATISTICS MODAL BOX END -->
+
+        <!-- SETTINGS MODAL BOX START -->
+        <!-- Button to open the modal -->
+        <button type="button" id="settingsBtn" class="settings-btn">
+          <span
+            class="material-icons-outlined material-icons md-36"
+            aria-hidden="true"
+            >settings</span
+          >
+          <span class="icon-heading">Settings</span>
+        </button>
+
+        <!-- The Modal Box-->
+        <div id="settingsModal" class="modal settings-modal">
+          <!-- Modal content -->
+          <div class="modal-content">
+            <button type="button" class="close">&times;</button>
+            <h2>Click the button below to clear your game's statistics</h2>
+
+            <div class="container">
+              <!-- Button to open the modal -->
+              <button type="button" id="deleteBtn" class="delete-btn">
+                Delete Game Statistics
+              </button>
+            </div>
+
+            <!-- DELETE CONFIRMATION MODAL BOX START -->
+            <!-- The Modal Box-->
+            <div id="deleteModal" class="modal delete-modal">
+              <!-- Modal content -->
+              <div class="modal-content">
+                <button type="button" class="close">&times;</button>
+                <h3><span class="text-border">Delete Game Statistics</span></h3>
+                <p>Are you sure you want to delete your game's statistics?</p>
+
+                <div class="delete-and-cancel-btn-wrapper">
+                  <button type="button" id="cancelBtn" class="cancel-btn">
+                    Cancel
+                  </button>
+                  <button
+                    type="button"
+                    id="confirmDeleteBtn"
+                    class="confirm-delete-btn"
+                  >
+                    Delete
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- DELETE CONFIRMATION MODAL BOX END -->
+          </div>
+        </div>
+        <!-- SETTINGS MODAL BOX END -->
+
+        <!-- DATE & TIME START -->
+        <div class="date-time-wrapper">
+          <p><time id="date" class="date" datetime=""></time></p>
+          <p><time id="time" class="time"></time></p>
+        </div>
+        <!-- DATE & TIME END -->
+      </div>
+    </div>
+  </body>
+</html>
